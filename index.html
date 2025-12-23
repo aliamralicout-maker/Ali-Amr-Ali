@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ContactHub - Smart Contact Manager</title>
+  <link rel="stylesheet" href="CSS/bootstrap.min.css">
+  <link rel="stylesheet" href="font-icon/all.min.css">
+  <link rel="stylesheet" href="CSS/index.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body class="">
+
+  <!-- div filter -->
+<div id="blur">
+
+<div class="container">
+<nav class="d-flex justify-content-between px-1  border-bottom bg-white end-0 start-0 top-0">
+  
+  <!-- 1 -->
+<div class="d-flex">
+    <div class="align-self-center">
+      <span class="fa-stack fa-2x">
+          <i class="fa-solid fa-square main-color fa-stack-2x fs-3rem mt-2"></i>
+          <i class="fa-solid fa-address-book fa-stack-1x fa-inverse fs-5"></i>
+      </span>
+    </div>
+    <div>
+        <h1 class="fs-3 mb-0 mt-2">Contact<span class="move-color">Hub</span></h1>
+        <p class="fs-6 text-secondary text-space">Smart Contact Manager</p>
+    </div>
+</div>
+  <!-- e1 -->
+
+  <!-- 2 -->
+<div class="d-flex justify-content-end">
+    <div class="align-self-center mx-2 "><button  id="btnAdd" type="button" class="btn btn-primary px-3 py-2 rounded-4 bg-main-color fw-bold hover-scale "><i class="fa-solid fa-plus fs-7r me-1 "></i> Add Contact</button></div>
+    <div class="align-self-center mx-2">
+        <i class="fa-solid fa-bell mx-2"></i>
+        <i class="fa-solid fa-gear mx-2"></i>
+    </div>
+    <div class="w-10 d-flex"><img src="images/avatar-2.jpg" class="w-75 rounded-4 align-self-center" alt=""></div>
+</div>
+  <!-- e2 -->
+</nav>
+</div>
+<!-- ---------------------------------------------------------------------------------------------------------------- -->
+
+
+<!-- 3 div -->
+<section class="">
+  <div class="container">
+    <main>
+
+      <div class="row">
+
+        
+        <div class="col-4">
+          <div class="d-flex mt-5 rounded-3 shadow p-2">
+            <div>
+              <span class="fa-stack fa-2x fs-3 text-info">
+                <i class="fa-solid fa-square fa-stack-2x"></i>
+                <i class="fa-solid fa-users fa-stack-1x fa-inverse fs-6"></i>
+              </span>
+            </div>
+            <div>
+              <p  class="mb-0 text-secondary">Total</p>
+              <span id="numTotal" class="fw-bold fs-4">0</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="d-flex mt-5 rounded-3 shadow p-2">
+            <div>
+              <span class="fa-stack fa-2x fs-3 text-warning">
+                <i class="fa-solid fa-square fa-stack-2x"></i>
+                <i class="fa-solid fa-star fa-stack-1x fa-inverse fs-6"></i>
+              </span>
+            </div>
+            <div>
+              <p class="mb-0 text-secondary">Favorites</p>
+              <span id="numFavorites" class="fw-bold fs-4">0</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="d-flex mt-5 rounded-3 shadow p-2">
+            <div>
+              <span class="fa-stack fa-2x fs-3 text-danger">
+                <i class="fa-solid fa-square fa-stack-2x"></i>
+                <i class="fa-solid fa-heart-pulse fa-stack-1x fa-inverse fs-6"></i>
+              </span>
+            </div>
+            <div>
+              <p class="mb-0 text-secondary">Emergency</p>
+              <span id="numEmergency" class="fw-bold fs-4">0</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+    </main>
+  </div>
+</section>
+
+
+<!-- ============================================================================================================ -->
+<div class="container">
+  <div class="layout">
+<!-- ------------------------------------------------------------- -->
+    <!-- search -->
+    <div class="col1">
+      <section>
+        <div class="mt-5">
+        <div>
+          <h2 class="mb-0">All Contacts</h2>
+          <p class="text-secondary">Manage and organize your 1 contacts</p>
+        </div>
+      </div>
+
+      <div class=" mb-3">
+        <div class="rounded-4 border d-flex py-2 text-secondary"><i class="fa-solid fa-search mt-2 pt-1 mx-3 text-secondary"></i><input oninput="searchContact(this.value)" id="" placeholder="Search By Name, Phone ,Or Email...." class="form-control border-0" type="search"></div>
+      </div>
+      </section>
+    </div>
+
+        <!-- card contact -->
+  <div class="col2">
+
+    <div id="cardDemo" class="row g-2">
+
+      
+    </div>
+    
+    </div>
+
+    <!-- section Favorites -->
+    <div class="col3">
+      <div class="overflow-hidden shadow rounded-4 mt-5 mb-3 my-3">
+
+  <div class="d-flex bg-light-red p-2 pb-0">
+      <div>
+          <span class="fa-stack fa-2x fs-1r text-warning mt-3 me-2">
+            <i class="fa-solid fa-square fa-stack-2x"></i>
+            <i class="fa-solid fa-star fa-stack-1x fa-inverse fs-7r"></i>
+          </span>
+      </div>
+    <div>
+        <h1 class="fs-1r mb-0 mt-2 fs-5 ">Favorites</h1>
+        <p class="fs-7r text-secondary text-space">Quick access to starred contacts</p>
+    </div>
+  </div>
+                                        <!-- Favorites -->
+  <div>
+    <p id="noFavorites" class="text-secondary text-center mt-3 py-3">No Favorites Yet</p>
+    <div id="contactNoFavorites" class="d-flex flex-column justify-content-between p-3">
+                <!-- 11111111111 -->
+    </div>
+  </div>
+
+    </div>
+    <!--  -->
+<div class="overflow-hidden shadow rounded-4">
+  <div class="d-flex bg-light-red p-2 pb-0">
+      <div>
+          <span class="fa-stack fa-2x fs-1r text-danger mt-3 me-2">
+            <i class="fa-solid fa-square fa-stack-2x"></i>
+            <i class="fa-solid fa-heart-pulse fa-stack-1x fa-inverse fs-7r"></i>
+          </span>
+      </div>
+    <div>
+        <h1 class="fs-1r mb-0 mt-2 fs-5">Emergency</h1>
+        <p class="fs-7r text-secondary text-space">Urgent contacts for urgent calls</p>
+    </div>
+  </div>
+                                      <!-- Emergency -->
+  <div>
+    <p id="noEmergency" class="text-secondary text-center mt-3 py-3">No emergency Yet</p>
+    <div id="contactNoEmergency" class="d-flex flex-column justify-content-between p-3 ">
+                                  <!-- 2 -->
+    </div>
+  </div>
+
+    </div>
+
+    </div>
+    
+</div>
+  <!-- end row -->
+</div>
+
+
+
+
+<!-- ================================================================================================================= -->
+<!-- div filter -->
+</div>
+
+  <!-- Add Contact -->
+
+    <section id="addContact"  class="box-contect shadow-lg px-4 py-3 rounded-4 position-fixed overflow-auto h-90vh d-none">
+      <!-- 1 -->
+      <div class="d-flex justify-content-between ">
+        <div><h2 class="fs-5 fw-bold">Add New Contact</h2></div>
+        <button id="btn-cancle-contact" class="btn btn-light fs-6"><i class="fa-solid fa-x text-secondary "></i></button">
+      </div>
+      <!-- e1 -->
+      <!-- 2 -->
+      <div class="d-flex flex-column">
+        <!--  -->
+        <div class=" rounded-circle d-flex justify-content-center my-3">
+          <span class="fa-stack fa-2x fs-3rem text-info">
+            <i class="fa-solid fa-circle fa-stack-2x"></i>
+            <i class="fa-solid fa-user fa-stack-1x fa-inverse fs-3"></i>
+          </span>
+        </div>
+        <!--  -->
+        <div class="align-self-center text-secondary">
+          <i class="fa-solid fa-camera"></i>
+          <span class="ms-2">Change Photo</span>
+        </div>
+        <!--  -->
+      </div>
+      <!-- e2 -->
+      <!-- First name -->
+      <div class="mt-3 mb-3">
+        <label class="mb-2 " for="name">Full Name <span class="text-danger">*</span></label>
+        <input
+        oninput="validataContact(this)"
+        id="name" placeholder="Enter Full Name" class="form-control " type="text">
+      </div>
+      <!-- e First name -->
+      <!-- Phone Number -->
+      <div class=" mb-3">
+        <label class="mb-2" for="phoneNumber">Phone Number <span class="text-danger">*</span></label>
+        <input
+        oninput="validataContact(this)"
+        id="phoneNumber" placeholder="Enter Phone Number" class="form-control" type="text">
+      </div>
+      <!-- e Phone Number -->
+      <!-- Email Address -->
+      <div class=" mb-3">
+        <label class="mb-2" for="emailAddress">Email Address</label>
+        <input
+        oninput="validataContact(this)"
+        id="emailAddress" placeholder="Enter Email Address" class="form-control" type="text">
+      </div>
+      <!-- e Email Address -->
+      <!--  Address -->
+      <div class=" mb-3">
+        <label class="mb-2" for="Address">Address</label>
+        <input
+        oninput="validataContact(this)"
+        id="Address" placeholder="Enter Address" class="form-control" type="text">
+      </div>
+      <!-- e  Address -->
+      <!-- Group -->
+      <div class=" mb-3">
+        <label class="mb-2" for="Group">Group</label>
+        <input
+        oninput="validataContact(this)"
+        id="Group" placeholder="" class="form-control" type="text" list="groupList">
+        <datalist id="groupList">
+          <option value="Family">Family</option>
+          <option value="Friends">Friends</option>
+          <option value="Work">Work</option>
+          <option value="School">School</option>
+          <option value="other">other</option>
+        </datalist>
+      </div>
+      <!-- e Group -->
+      <!-- Notes -->
+      <div class=" mb-3">
+        <label class="mb-2" for="notes">Notes</label>
+        <input
+        oninput="validataContact(this)"
+        id="notes" placeholder="Add notes about this contact" class="form-control py-4" type="text">
+      </div>
+      <!-- e Notes -->
+      <div class="d-flex my-4">
+        <div class="me-4"><input type="checkbox"> <i class="fa-solid fa-star text-warning"></i> <span>Favorite</span></div>
+        <div> <input type="checkbox"> <i class="fa-solid fa-heart-pulse text-danger"></i> <span>Emergency</span></div>
+        <!-- buttons -->
+      </div>
+      <div class="d-flex">
+        <div class="align-self-center mx-2 w-50"><button id="CancelBotton" type="button" class="btn btn-light px-5 py-2 rounded-3 fw-bold text-secondary w-100">Cancel</button></div>
+        <div id="addContactToSection" class="align-self-center mx-2 w-50"><button  type="button" class="btn btn-primary px-3 py-2 rounded-3 bg-main-color fw-bold w-100"><i class="fa-solid fa-check"></i> Save Contact</button></div>
+        <div id="updataContact"  class="align-self-center mx-2 w-50 d-none"><button type="button" class="btn btn-primary px-3 py-2 rounded-3 bg-main-color fw-bold w-100"><i class="fa-solid fa-check"></i> Updata Contact</button></div>
+      </div>
+    </section>
+
+
+
+
+  <script src="JS/index.js"></script>
+</body>
+</html>]
+
+
+<!-- 
+      <div class="d-flex justify-content-between w-100">
+          <div class="d-flex">
+            <div class="">
+              <span class="fa-stack fa-2x fs-4 text-warning mt-1 me-2">
+                <i class="fa-solid fa-square fa-stack-2x"></i>
+                <i class="fa-solid fa-star fa-stack-1x fa-inverse fs-5"></i>
+              </span>
+            </div>
+        
+            <div class="">
+              <p class="mb-0">Ali</p>
+              <p>01211256904</p>
+            </div>
+          </div>
+
+          <div class="">
+              <span class="fa-stack fa-2x fs-1r light-green hover-green mt-2 me-2">
+                <i class="fa-solid fa-square fa-stack-2x "></i>
+                <i class="fa-solid fa-phone fa-stack-1x fa-inverse fs-7r text-green hover-white"></i>
+              </span>
+          </div>
+      </div> -->
